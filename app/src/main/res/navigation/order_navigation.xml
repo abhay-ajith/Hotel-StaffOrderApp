@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/order_navigation"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.order_app.view.MainFragment"
+        android:label="MainFragment">
+        <action
+            android:id="@+id/toNewLogin"
+            app:destination="@id/newLoginFragment" />
+        <action
+            android:id="@+id/toMenu"
+            app:destination="@id/menuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.example.order_app.view.MenuFragment"
+        android:label="MenuFragment" >
+        <action
+            android:id="@+id/toBeverage"
+            app:destination="@id/beverageFragment" />
+        <action
+            android:id="@+id/toPastry"
+            app:destination="@id/pastryFragment" />
+        <action
+            android:id="@+id/toSnack"
+            app:destination="@id/snackFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newLoginFragment"
+        android:name="com.example.order_app.view.NewLoginFragment"
+        android:label="NewLoginFragment" >
+        <action
+            android:id="@+id/toMain"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/beverageFragment"
+        android:name="com.example.order_app.view.BeverageFragment"
+        android:label="fragment_beverage"
+        tools:layout="@layout/fragment_beverage" />
+    <fragment
+        android:id="@+id/pastryFragment"
+        android:name="com.example.order_app.view.PastryFragment"
+        android:label="fragment_pastry"
+        tools:layout="@layout/fragment_pastry" />
+    <fragment
+        android:id="@+id/snackFragment"
+        android:name="com.example.order_app.view.SnackFragment"
+        android:label="fragment_snack"
+        tools:layout="@layout/fragment_snack" />
+</navigation>

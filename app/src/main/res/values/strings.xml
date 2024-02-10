@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Order_App</string>
+    <string name="staff_name">Staff Name</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="new_login">New Login</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="new_staff_name">New Staff Name</string>
+    <string name="beverages">Beverages</string>
+    <string name="pastry">Pastry</string>
+    <string name="snacks">Snacks</string>
+</resources>
