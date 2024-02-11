@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,6 +20,8 @@ public class PastryAdapter extends RecyclerView.Adapter<PastryAdapter.ViewHolder
     PastryData[] pastryData;
 
     Fragment fragment;
+
+    int quantity;
 
     public PastryAdapter(PastryData[] pastryData, Fragment fragment) {
         this.pastryData = pastryData;
@@ -41,7 +44,23 @@ public class PastryAdapter extends RecyclerView.Adapter<PastryAdapter.ViewHolder
 
         holder.textView.setText(pastryDataList.getItem());
         holder.imageView.setImageResource(pastryDataList.getItemImage());
+        holder.imageButtonPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                quantity++;
+                displayQuantity(holder.quantityTxt);
+            }
+        });
+        holder.imageButtonMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
+
+    }
+
+    private void displayQuantity(TextView quantityTxt) {
     }
 
     @Override
@@ -53,11 +72,16 @@ public class PastryAdapter extends RecyclerView.Adapter<PastryAdapter.ViewHolder
 
         ImageView imageView;
 
-        TextView textView;
+        TextView textView,quantityTxt;
+
+        ImageButton imageButtonPlus,imageButtonMinus;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView=itemView.findViewById(R.id.image_pas_item);
             textView=itemView.findViewById(R.id.txt_pas_item);
+            imageButtonPlus=itemView.findViewById(R.id.addquantity_pas);
+            imageButtonMinus=itemView.findViewById(R.id.subquantity_pas);
+            quantityTxt =itemView.findViewById(R.id.quantity_pas);
         }
     }
 }
