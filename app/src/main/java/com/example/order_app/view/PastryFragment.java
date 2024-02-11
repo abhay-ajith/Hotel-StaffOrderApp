@@ -2,13 +2,18 @@ package com.example.order_app.view;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.order_app.R;
 import com.example.order_app.viewmodel.PastryData;
@@ -16,6 +21,7 @@ import com.example.order_app.viewmodel.PastryData;
 
 public class PastryFragment extends Fragment {
 
+    Button addtocart;
 
 
     public PastryFragment() {
@@ -28,6 +34,8 @@ public class PastryFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_pastry, container, false);
 
+        addtocart=view.findViewById(R.id.addtocart_pas);
+
         RecyclerView recyclerView = view.findViewById(R.id.pas_items);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -38,5 +46,17 @@ public class PastryFragment extends Fragment {
         PastryAdapter pastryAdapter = new PastryAdapter(pastryData,this);
         recyclerView.setAdapter(pastryAdapter);
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        addtocart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavDirections action = PastryFragmentDirections.toOrdersPas();
+                Navigation.findNavController(v).navigate(action);
+            }
+        });
     }
 }

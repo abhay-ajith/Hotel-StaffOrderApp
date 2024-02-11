@@ -31,6 +31,31 @@ public class SnackFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_snack, container, false);
+        View view = inflater.inflate(R.layout.fragment_snack, container, false);
+
+        addtocart=view.findViewById(R.id.addtocart_sna);
+        RecyclerView recyclerView = view.findViewById(R.id.sna_items);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        SnackData[] snackData = new SnackData[]{
+                new SnackData("Lays",R.drawable.snack_icon)
+        };
+
+        SnackAdapter snackAdapter = new SnackAdapter(snackData,this);
+        recyclerView.setAdapter(snackAdapter);
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        addtocart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavDirections action = SnackFragmentDirections.toOrdersSna();
+                Navigation.findNavController(v).navigate(action);
+            }
+        });
     }
 }

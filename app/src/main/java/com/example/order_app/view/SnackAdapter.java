@@ -1,6 +1,5 @@
 package com.example.order_app.view;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,37 +13,36 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.order_app.R;
-import com.example.order_app.viewmodel.PastryData;
+import com.example.order_app.viewmodel.SnackData;
 
-public class PastryAdapter extends RecyclerView.Adapter<PastryAdapter.ViewHolder> {
+public class SnackAdapter extends RecyclerView.Adapter<SnackAdapter.ViewHolder> {
 
-    PastryData[] pastryData;
+    SnackData[] snackData;
 
     Fragment fragment;
 
     int quantity;
 
-    public PastryAdapter(PastryData[] pastryData, Fragment fragment) {
-        this.pastryData = pastryData;
+    public SnackAdapter(SnackData[] snackData, Fragment fragment) {
+        this.snackData = snackData;
         this.fragment = fragment;
     }
 
-
     @NonNull
     @Override
-    public PastryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.pastryitemlayout,parent,false);
+    public SnackAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater layoutInflater =LayoutInflater.from(parent.getContext());
+        View view = layoutInflater.inflate(R.layout.snackitemlayout,parent,false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PastryAdapter.ViewHolder holder, int position) {
-        final PastryData pastryDataList = pastryData[position];
+    public void onBindViewHolder(@NonNull SnackAdapter.ViewHolder holder, int position) {
+        final SnackData snackDataList = snackData[position];
 
-        holder.textView.setText(pastryDataList.getItem());
-        holder.imageView.setImageResource(pastryDataList.getItemImage());
+        holder.textView.setText(snackDataList.getItem());
+        holder.imageView.setImageResource(snackDataList.getItemImage());
         holder.imageButtonPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,6 +50,7 @@ public class PastryAdapter extends RecyclerView.Adapter<PastryAdapter.ViewHolder
                 displayQuantity(holder.quantityTxt);
             }
         });
+
         holder.imageButtonMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,15 +67,12 @@ public class PastryAdapter extends RecyclerView.Adapter<PastryAdapter.ViewHolder
     }
 
     private void displayQuantity(TextView quantityTxt) {
-    }
-
-    private void displayQuantity(TextView quantityTxt) {
         quantityTxt.setText(String.valueOf(quantity));
     }
 
     @Override
     public int getItemCount() {
-        return pastryData.length;
+        return snackData.length;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -88,11 +84,11 @@ public class PastryAdapter extends RecyclerView.Adapter<PastryAdapter.ViewHolder
         ImageButton imageButtonPlus,imageButtonMinus;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView=itemView.findViewById(R.id.image_pas_item);
-            textView=itemView.findViewById(R.id.txt_pas_item);
-            imageButtonPlus=itemView.findViewById(R.id.addquantity_pas);
-            imageButtonMinus=itemView.findViewById(R.id.subquantity_pas);
-            quantityTxt =itemView.findViewById(R.id.quantity_pas);
+            imageView=itemView.findViewById(R.id.image_sna_item);
+            textView =itemView.findViewById(R.id.txt_sna_item);
+            imageButtonPlus=itemView.findViewById(R.id.addquantity_sna);
+            imageButtonMinus=itemView.findViewById(R.id.subquantity_sna);
+            quantityTxt =itemView.findViewById(R.id.quantity_sna);
         }
     }
 }

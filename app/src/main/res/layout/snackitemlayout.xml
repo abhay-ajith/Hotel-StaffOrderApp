@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="5dp"
-    tools:context=".view.PastryAdapter">
+    tools:context=".view.SnackAdapter">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -23,14 +23,14 @@
             android:padding="10dp">
 
             <ImageView
-                android:id="@+id/image_pas_item"
+                android:id="@+id/image_sna_item"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:scaleType="fitXY"
                 android:src="@mipmap/ic_launcher" />
 
             <TextView
-                android:id="@+id/txt_pas_item"
+                android:id="@+id/txt_sna_item"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -47,14 +47,14 @@
                 android:layout_gravity="center_vertical">
 
                 <ImageButton
-                    android:id="@+id/addquantity_pas"
+                    android:id="@+id/addquantity_sna"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="10dp"
                     android:background="@drawable/minus"/>
 
                 <TextView
-                    android:id="@+id/quantity_pas"
+                    android:id="@+id/quantity_sna"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
@@ -63,7 +63,7 @@
                     android:textStyle="bold"/>
 
                 <ImageButton
-                    android:id="@+id/subquantity_pas"
+                    android:id="@+id/subquantity_sna"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="10dp"

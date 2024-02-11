@@ -4,8 +4,10 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -19,6 +21,8 @@ public class BeverageAdapter extends RecyclerView.Adapter<BeverageAdapter.ViewHo
     BeveragecatData[] beveragecatData;
 
     Context context;
+
+    int quantity;
 
     public BeverageAdapter(BeveragecatData[] beveragecatData, Fragment fragment) {
         this.beveragecatData = beveragecatData;
@@ -40,7 +44,32 @@ public class BeverageAdapter extends RecyclerView.Adapter<BeverageAdapter.ViewHo
 
         holder.textView.setText(beveragecatDataList.getItem());
         holder.imageView.setImageResource(beveragecatDataList.getItemImage());
+        holder.imageButtonPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                quantity++;
+                displayQuantity(holder.quantityTxt);
 
+            }
+        });
+
+        holder.imageButtonMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(quantity==0){
+                    Toast.makeText(v.getContext(), "Cant Reduce the Amount",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    quantity--;
+                    displayQuantity(holder.quantityTxt);
+                }
+            }
+        });
+
+    }
+
+    private void displayQuantity(TextView quantityTxt) {
+        quantityTxt.setText(String.valueOf(quantity));
     }
 
     @Override
@@ -51,11 +80,17 @@ public class BeverageAdapter extends RecyclerView.Adapter<BeverageAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imageView;
-        TextView textView;
+        TextView textView,quantityTxt;
+
+        ImageButton imageButtonPlus,imageButtonMinus;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView=itemView.findViewById(R.id.image_bev_item);
             textView=itemView.findViewById(R.id.txt_bev_item);
+            imageButtonPlus=itemView.findViewById(R.id.addquantity_bev);
+            imageButtonMinus=itemView.findViewById(R.id.subquantity_bev);
+            quantityTxt =itemView.findViewById(R.id.quantity_bev);
+
         }
     }
 }
