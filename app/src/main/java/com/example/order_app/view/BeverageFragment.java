@@ -50,6 +50,7 @@ public class BeverageFragment extends Fragment {
         addtocart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 NavDirections action = BeverageFragmentDirections.toOrdersBev();
                 Navigation.findNavController(v).navigate(action);
             }

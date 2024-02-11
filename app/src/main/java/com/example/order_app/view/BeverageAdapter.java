@@ -1,6 +1,7 @@
 package com.example.order_app.view;
 
 import android.content.Context;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.order_app.R;
 import com.example.order_app.viewmodel.BeveragecatData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BeverageAdapter extends RecyclerView.Adapter<BeverageAdapter.ViewHolder> {
 
