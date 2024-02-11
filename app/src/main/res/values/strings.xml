@@ -11,4 +11,6 @@
     <string name="beverages">Beverages</string>
     <string name="pastry">Pastry</string>
     <string name="snacks">Snacks</string>
+    <string name="add_to_cart">Add To Cart</string>
+    <string name="orders">Orders</string>
 </resources>

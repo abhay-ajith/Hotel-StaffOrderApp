@@ -1,37 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:padding="5dp"
     tools:context=".view.BeverageAdapter">
 
     <androidx.cardview.widget.CardView
-        app:cardElevation="10dp"
-        app:cardCornerRadius="10dp"
-        android:layout_margin="5dp"
-        app:cardBackgroundColor="#FFFFFF"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp"
+        app:cardBackgroundColor="#FFFFFF">
 
-        <ImageView
-            android:id="@+id/image_bev_item"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="20dp"
-            android:scaleType="fitXY"
-            android:src="@mipmap/ic_launcher" />
-        <TextView
-            android:id="@+id/txt_bev_item"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="120dp"
-            android:text="Item 1"
-            android:textColor="#000"
-            android:textSize="20sp" />
+            android:orientation="horizontal"
+            android:padding="10dp">
 
+            <ImageView
+                android:id="@+id/image_bev_item"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/txt_bev_item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:text="Item 1"
+                android:textColor="#000"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical">
+
+                <ImageButton
+                    android:id="@+id/addquantity_bev"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/minus"/>
+
+                <TextView
+                    android:id="@+id/quantity_bev"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:layout_marginStart="10dp"
+                    android:textSize="28sp"
+                    android:textStyle="bold"/>
+
+                <ImageButton
+                    android:id="@+id/subquantity_bev"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/plus" />
+            </LinearLayout>
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>
