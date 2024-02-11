@@ -68,9 +68,6 @@ public class PastryAdapter extends RecyclerView.Adapter<PastryAdapter.ViewHolder
     }
 
     private void displayQuantity(TextView quantityTxt) {
-    }
-
-    private void displayQuantity(TextView quantityTxt) {
         quantityTxt.setText(String.valueOf(quantity));
     }
 
