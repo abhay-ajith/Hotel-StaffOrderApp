@@ -4,9 +4,12 @@ public class BeveragecatData {
     private String Item;
     private Integer ItemImage;
 
-    public BeveragecatData(String item, Integer itemImage) {
+    private String quantity;
+
+    public BeveragecatData(String item, Integer itemImage, String quantity) {
         Item = item;
         ItemImage = itemImage;
+        this.quantity = quantity;
     }
 
     public String getItem() {
@@ -23,5 +26,13 @@ public class BeveragecatData {
 
     public void setItemImage(Integer itemImage) {
         ItemImage = itemImage;
+    }
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
     }
 }

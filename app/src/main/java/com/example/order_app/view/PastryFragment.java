@@ -42,7 +42,7 @@ public class PastryFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         PastryData[] pastryData = new PastryData[]{
-                new PastryData("Cake",R.drawable.pastery_icon)
+                new PastryData("Cake",R.drawable.pastery_icon,"0")
         };
 
         PastryAdapter pastryAdapter = new PastryAdapter(pastryData,this);

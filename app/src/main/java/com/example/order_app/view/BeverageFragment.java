@@ -37,6 +37,8 @@ public class BeverageFragment extends Fragment {
     Button addtocart;
     RecyclerView recyclerView;
 
+    BeverageAdapter beverageAdapter;
+
     public BeverageFragment() {
         // Required empty public constructor
     }
@@ -51,12 +53,12 @@ public class BeverageFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         BeveragecatData[] beveragecatData = new BeveragecatData[]{
-                new BeveragecatData("Lime Juice",R.drawable.limejuice),
-                new BeveragecatData("Beer",R.drawable.beer),
-                new BeveragecatData("Pepsi",R.drawable.pepsi)
+                new BeveragecatData("Lime Juice",R.drawable.limejuice,"0"),
+                new BeveragecatData("Beer",R.drawable.beer,"0"),
+                new BeveragecatData("Pepsi",R.drawable.pepsi,"0")
         };
 
-        BeverageAdapter beverageAdapter = new BeverageAdapter(beveragecatData, this);
+        beverageAdapter = new BeverageAdapter(beveragecatData, this);
         recyclerView.setAdapter(beverageAdapter);
         return view;
     }
@@ -75,24 +77,36 @@ public class BeverageFragment extends Fragment {
     @SuppressLint("Range")
     private void insertCartItem() {
 
-        TextView item = getView().findViewById(R.id.txt_bev_item);
-        TextView quant=getView().findViewById(R.id.quantity_bev);
+        for (int i = 0; i < beverageAdapter.getItemCount(); i++) {
+            // Get the BeveragecatData at the current position
+            BeveragecatData beverage = beverageAdapter.getItem(i);
 
-        ContentValues values = new ContentValues();
+            // Retrieve data for the current item
+            String itemName = beverage.getItem();
+            String quantity = beverage.getQuantity();
+            if(quantity.equals("0")){
+                continue;
+            }
 
-        values.put(OrderProvider.itemName, item.getText().toString());
-        values.put(OrderProvider.quantity, Integer.parseInt(quant.getText().toString()));
-        getActivity().getContentResolver().insert(OrderProvider.CONTENT_URI, values);
-        Toast.makeText(getContext(), "New Record Inserted", Toast.LENGTH_SHORT).show();
+            // Insert the item into the database
+            ContentValues values = new ContentValues();
+            values.put(OrderProvider.itemName, itemName);
+            values.put(OrderProvider.quantity, Integer.parseInt(quantity));
+            getActivity().getContentResolver().insert(OrderProvider.CONTENT_URI, values);
+
+            // Log and toast to indicate insertion of each item
+            Log.d("abhay", "Item inserted: " + itemName + " " + quantity);
+            Toast.makeText(getContext(), "Item inserted: " + itemName + " " + quantity, Toast.LENGTH_SHORT).show();
+        }
 
         Cursor cursor = getActivity().getContentResolver().query(OrderProvider.CONTENT_URI, null, null, null, null);
         if(cursor != null){
             try{
                 while (cursor.moveToNext()){
-                    String itemName=cursor.getString(cursor.getColumnIndex(OrderProvider.itemName));
-                    int quantity=Integer.parseInt(cursor.getString(cursor.getColumnIndex(OrderProvider.quantity)));
-                    Log.d("abhay",itemName + " " + quantity);
-                    Toast.makeText(getContext(),itemName + " " + quantity,Toast.LENGTH_SHORT).show();
+                    String item_Name=cursor.getString(cursor.getColumnIndex(OrderProvider.itemName));
+                    int quant=Integer.parseInt(cursor.getString(cursor.getColumnIndex(OrderProvider.quantity)));
+                    Log.d("abhay",item_Name + " " + quant);
+//                    Toast.makeText(getContext(),itemName + " " + quantity,Toast.LENGTH_SHORT).show();
                 }
             }finally {
                 cursor.close();

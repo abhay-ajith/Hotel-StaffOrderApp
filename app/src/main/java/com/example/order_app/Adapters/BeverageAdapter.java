@@ -52,8 +52,10 @@ public class BeverageAdapter extends RecyclerView.Adapter<BeverageAdapter.ViewHo
         holder.imageButtonPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int quantity = Integer.parseInt(beveragecatDataList.getQuantity());
                 quantity++;
-                displayQuantity(holder.quantityTxt);
+                beveragecatDataList.setQuantity(String.valueOf(quantity));
+                holder.quantityTxt.setText(String.valueOf(quantity));
 
             }
         });
@@ -65,23 +67,25 @@ public class BeverageAdapter extends RecyclerView.Adapter<BeverageAdapter.ViewHo
                     Toast.makeText(v.getContext(), "Cant Reduce the Amount",Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    int quantity = Integer.parseInt(beveragecatDataList.getQuantity());
                     quantity--;
-                    displayQuantity(holder.quantityTxt);
+                    beveragecatDataList.setQuantity(String.valueOf(quantity));
+                    holder.quantityTxt.setText(String.valueOf(quantity));
                 }
             }
         });
 
     }
 
-
-    private void displayQuantity(TextView quantityTxt) {
-        quantityTxt.setText(String.valueOf(quantity));
-    }
-
     @Override
     public int getItemCount() {
         return beveragecatData.length;
     }
+
+    public BeveragecatData getItem(int position) {
+        return beveragecatData[position];
+    }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
