@@ -1,4 +1,4 @@
-package com.example.order_app.view;
+package com.example.order_app.Adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -14,6 +14,7 @@ import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.order_app.view.MenuFragmentDirections;
 import com.example.order_app.viewmodel.MenucatData;
 import com.example.order_app.R;
 

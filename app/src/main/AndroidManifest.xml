@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Order_App"
         tools:targetApi="34">
         <activity
-            android:name=".view.MainActivity"
+            android:name=".view.SpalshScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,6 +21,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".view.MainActivity"
+            android:exported="true">
+
+        </activity>
+        <provider
+            android:name=".Database.OrderProvider"
+            android:authorities="com.example.order_app.Database.order_provider"
+            android:enabled="true"
+            android:exported="true">
+        </provider>
+
     </application>
 
 </manifest>

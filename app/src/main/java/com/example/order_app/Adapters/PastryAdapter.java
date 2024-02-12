@@ -1,4 +1,4 @@
-package com.example.order_app.view;
+package com.example.order_app.Adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,36 +13,37 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.order_app.R;
-import com.example.order_app.viewmodel.SnackData;
+import com.example.order_app.viewmodel.PastryData;
 
-public class SnackAdapter extends RecyclerView.Adapter<SnackAdapter.ViewHolder> {
+public class PastryAdapter extends RecyclerView.Adapter<PastryAdapter.ViewHolder> {
 
-    SnackData[] snackData;
+    PastryData[] pastryData;
 
     Fragment fragment;
 
     int quantity;
 
-    public SnackAdapter(SnackData[] snackData, Fragment fragment) {
-        this.snackData = snackData;
+    public PastryAdapter(PastryData[] pastryData, Fragment fragment) {
+        this.pastryData = pastryData;
         this.fragment = fragment;
     }
 
+
     @NonNull
     @Override
-    public SnackAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater =LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.snackitemlayout,parent,false);
+    public PastryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        View view = layoutInflater.inflate(R.layout.pastryitemlayout,parent,false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SnackAdapter.ViewHolder holder, int position) {
-        final SnackData snackDataList = snackData[position];
+    public void onBindViewHolder(@NonNull PastryAdapter.ViewHolder holder, int position) {
+        final PastryData pastryDataList = pastryData[position];
 
-        holder.textView.setText(snackDataList.getItem());
-        holder.imageView.setImageResource(snackDataList.getItemImage());
+        holder.textView.setText(pastryDataList.getItem());
+        holder.imageView.setImageResource(pastryDataList.getItemImage());
         holder.imageButtonPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,7 +51,6 @@ public class SnackAdapter extends RecyclerView.Adapter<SnackAdapter.ViewHolder> 
                 displayQuantity(holder.quantityTxt);
             }
         });
-
         holder.imageButtonMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,7 +72,7 @@ public class SnackAdapter extends RecyclerView.Adapter<SnackAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return snackData.length;
+        return pastryData.length;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -84,11 +84,11 @@ public class SnackAdapter extends RecyclerView.Adapter<SnackAdapter.ViewHolder> 
         ImageButton imageButtonPlus,imageButtonMinus;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView=itemView.findViewById(R.id.image_sna_item);
-            textView =itemView.findViewById(R.id.txt_sna_item);
-            imageButtonPlus=itemView.findViewById(R.id.addquantity_sna);
-            imageButtonMinus=itemView.findViewById(R.id.subquantity_sna);
-            quantityTxt =itemView.findViewById(R.id.quantity_sna);
+            imageView=itemView.findViewById(R.id.image_pas_item);
+            textView=itemView.findViewById(R.id.txt_pas_item);
+            imageButtonPlus=itemView.findViewById(R.id.addquantity_pas);
+            imageButtonMinus=itemView.findViewById(R.id.subquantity_pas);
+            quantityTxt =itemView.findViewById(R.id.quantity_pas);
         }
     }
 }

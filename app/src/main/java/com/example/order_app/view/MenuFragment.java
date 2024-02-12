@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.order_app.Adapters.MenucatAdapter;
 import com.example.order_app.viewmodel.MenucatData;
 import com.example.order_app.R;
 

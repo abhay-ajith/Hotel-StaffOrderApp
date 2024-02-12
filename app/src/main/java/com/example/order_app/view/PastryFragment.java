@@ -14,7 +14,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.example.order_app.Adapters.PastryAdapter;
 import com.example.order_app.R;
 import com.example.order_app.viewmodel.PastryData;
 
@@ -54,8 +56,7 @@ public class PastryFragment extends Fragment {
         addtocart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavDirections action = PastryFragmentDirections.toOrdersPas();
-                Navigation.findNavController(v).navigate(action);
+                Toast.makeText(getContext(),"Added to orders",Toast.LENGTH_SHORT).show();
             }
         });
     }

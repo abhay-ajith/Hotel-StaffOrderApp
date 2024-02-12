@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="5dp"
-    tools:context=".view.PastryAdapter">
+    tools:context=".Adapters.PastryAdapter">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

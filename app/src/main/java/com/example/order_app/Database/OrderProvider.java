@@ -1,4 +1,7 @@
+// OrderProvider.java
 package com.example.order_app.Database;
+
+import static android.content.ContentValues.TAG;
 
 import android.content.ContentProvider;
 import android.content.ContentUris;
@@ -10,6 +13,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,15 +23,15 @@ public class OrderProvider extends ContentProvider {
 
     static final String DATABASE_NAME = "Hotel_OrdersDB";
     static final String TABLE_NAME = "orders";
-    static final int DATABASE_VERSION = 1;
+    static final int DATABASE_VERSION = 2;
 
     static final String PROVIDER_NAME = "com.example.order_app.Database.order_provider";
     static final String URL = "content://" + PROVIDER_NAME + "/orders";
-    static final Uri CONTENT_URI = Uri.parse(URL);
+    public static final Uri CONTENT_URI = Uri.parse(URL);
 
     static final String id = "id";
-    static final String productName = "item_name";
-    static final String quantity = "quantity";
+    public static final String itemName = "item_name";
+    public static final String quantity = "quantity";
     static final int uriCode = 1;
     static UriMatcher uriMatcher;
 
@@ -35,7 +39,6 @@ public class OrderProvider extends ContentProvider {
             + " (id INTEGER PRIMARY KEY AUTOINCREMENT, "
             + " item_name TEXT NOT NULL, "
             + " quantity INTEGER NOT NULL); ";
-
 
     private static class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -45,6 +48,7 @@ public class OrderProvider extends ContentProvider {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
+            Log.d("Abhay", "onCreate: databasecreated");
             db.execSQL(CREATE_DB_TABLE);
         }
 
@@ -65,14 +69,17 @@ public class OrderProvider extends ContentProvider {
         Context context = getContext();
         DatabaseHelper dbHelper = new DatabaseHelper(context);
         db = dbHelper.getWritableDatabase();
-        return (db != null);
+        if (db != null) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public String getType(Uri uri) {
         switch (uriMatcher.match(uri)) {
             case uriCode:
-                return "vnd.android.cursor.dir/vnd." + PROVIDER_NAME + ".orders";
+                return "com.example.order_app.Database.order_provider/orders";
             default:
                 throw new IllegalArgumentException("Unsupported URI: " + uri);
         }
@@ -89,7 +96,6 @@ public class OrderProvider extends ContentProvider {
         }
         throw new SQLiteException("Failed to add a record into " + uri);
     }
-
 
     @Override
     public Cursor query(Uri uri, String[] projection, String selection,
@@ -109,3 +115,4 @@ public class OrderProvider extends ContentProvider {
         return db.update(TABLE_NAME, values, selection, selectionArgs);
     }
 }
+

@@ -1,4 +1,4 @@
-package com.example.order_app.view;
+package com.example.order_app.Adapters;
 
 import android.content.Context;
 import android.util.Pair;
@@ -24,13 +24,14 @@ public class BeverageAdapter extends RecyclerView.Adapter<BeverageAdapter.ViewHo
 
     BeveragecatData[] beveragecatData;
 
-    Context context;
+    Fragment fragment;
 
     int quantity;
 
+
     public BeverageAdapter(BeveragecatData[] beveragecatData, Fragment fragment) {
         this.beveragecatData = beveragecatData;
-        this.context = fragment.requireContext();
+        this.fragment = fragment;
     }
 
     @NonNull
@@ -71,6 +72,7 @@ public class BeverageAdapter extends RecyclerView.Adapter<BeverageAdapter.ViewHo
         });
 
     }
+
 
     private void displayQuantity(TextView quantityTxt) {
         quantityTxt.setText(String.valueOf(quantity));
