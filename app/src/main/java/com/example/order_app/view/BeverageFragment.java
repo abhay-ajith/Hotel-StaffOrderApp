@@ -104,6 +104,7 @@ public class BeverageFragment extends Fragment {
                 while (cursor.moveToNext()){
                     String item_Name=cursor.getString(cursor.getColumnIndex(OrderProvider.itemName));
                     int quant=Integer.parseInt(cursor.getString(cursor.getColumnIndex(OrderProvider.quantity)));
+                    Log.d("Abhay",item_Name + " " + quant);
                     Toast.makeText(getContext(),item_Name + " " + quant,Toast.LENGTH_SHORT).show();
                 }
             }finally {

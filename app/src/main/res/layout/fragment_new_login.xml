@@ -9,7 +9,7 @@
 
 
     <EditText
-        android:id="@+id/staffName"
+        android:id="@+id/staffNameNew"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/new_staff_name"
@@ -22,12 +22,12 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/passwordNew"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/password"
         android:inputType="textPassword"
-        app:layout_constraintTop_toBottomOf="@id/staffName"
+        app:layout_constraintTop_toBottomOf="@id/staffNameNew"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"
@@ -39,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/sign_up"
-        app:layout_constraintTop_toBottomOf="@id/password"
+        app:layout_constraintTop_toBottomOf="@id/passwordNew"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="50dp"

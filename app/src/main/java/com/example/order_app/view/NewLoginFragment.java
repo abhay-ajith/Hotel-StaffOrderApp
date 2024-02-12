@@ -1,5 +1,6 @@
 package com.example.order_app.view;
 
+import android.content.ContentValues;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,12 +9,15 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.order_app.Database.OrderProvider;
 import com.example.order_app.R;
 
 public class NewLoginFragment extends Fragment {
@@ -59,7 +63,24 @@ public class NewLoginFragment extends Fragment {
 
     private void insert_to_db() {
 
-        Toast.makeText(getContext(),"Data Successfully Added",Toast.LENGTH_SHORT).show();
+        EditText usernameEditText = requireView().findViewById(R.id.staffNameNew);
+        EditText passwordEditText = requireView().findViewById(R.id.passwordNew);
+
+        String username = usernameEditText.getText().toString().trim();
+        String password = passwordEditText.getText().toString().trim();
+
+        // Validation: Check if username and password are not empty
+        if (username.isEmpty() || password.isEmpty()) {
+            Toast.makeText(requireContext(), "Please enter both username and password", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        ContentValues values = new ContentValues();
+        values.put(OrderProvider.Username, username);
+        values.put(OrderProvider.Password, password);
+        getActivity().getContentResolver().insert(OrderProvider.CONTENT_URI_USER, values);
+
+        Log.d("abhay", "Added Successfully New User ");
     }
 
     private void goToMain() {
