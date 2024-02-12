@@ -94,9 +94,8 @@ public class BeverageFragment extends Fragment {
             values.put(OrderProvider.quantity, Integer.parseInt(quantity));
             getActivity().getContentResolver().insert(OrderProvider.CONTENT_URI, values);
 
-            // Log and toast to indicate insertion of each item
-            Log.d("abhay", "Item inserted: " + itemName + " " + quantity);
-            Toast.makeText(getContext(), "Item inserted: " + itemName + " " + quantity, Toast.LENGTH_SHORT).show();
+            Log.d("abhay", "Added Successfully ");
+            //Toast.makeText(getContext(), "Item inserted: " + itemName + " " + quantity, Toast.LENGTH_SHORT).show();
         }
 
         Cursor cursor = getActivity().getContentResolver().query(OrderProvider.CONTENT_URI, null, null, null, null);
@@ -105,8 +104,7 @@ public class BeverageFragment extends Fragment {
                 while (cursor.moveToNext()){
                     String item_Name=cursor.getString(cursor.getColumnIndex(OrderProvider.itemName));
                     int quant=Integer.parseInt(cursor.getString(cursor.getColumnIndex(OrderProvider.quantity)));
-                    Log.d("abhay",item_Name + " " + quant);
-//                    Toast.makeText(getContext(),itemName + " " + quantity,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),item_Name + " " + quant,Toast.LENGTH_SHORT).show();
                 }
             }finally {
                 cursor.close();

@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.order_app.R;
+import com.example.order_app.viewmodel.BeveragecatData;
 import com.example.order_app.viewmodel.PastryData;
 
 public class PastryAdapter extends RecyclerView.Adapter<PastryAdapter.ViewHolder> {
@@ -47,8 +48,10 @@ public class PastryAdapter extends RecyclerView.Adapter<PastryAdapter.ViewHolder
         holder.imageButtonPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int quantity = Integer.parseInt(pastryDataList.getQuantity());
                 quantity++;
-                displayQuantity(holder.quantityTxt);
+                pastryDataList.setQuantity(String.valueOf(quantity));
+                holder.quantityTxt.setText(String.valueOf(quantity));
             }
         });
         holder.imageButtonMinus.setOnClickListener(new View.OnClickListener() {
@@ -58,16 +61,19 @@ public class PastryAdapter extends RecyclerView.Adapter<PastryAdapter.ViewHolder
                     Toast.makeText(v.getContext(), "Cant Reduce the Amount",Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    int quantity = Integer.parseInt(pastryDataList.getQuantity());
                     quantity--;
-                    displayQuantity(holder.quantityTxt);
+                    pastryDataList.setQuantity(String.valueOf(quantity));
+                    holder.quantityTxt.setText(String.valueOf(quantity));
                 }
             }
         });
 
     }
 
-    private void displayQuantity(TextView quantityTxt) {
-        quantityTxt.setText(String.valueOf(quantity));
+
+    public PastryData getItem(int position) {
+        return pastryData[position];
     }
 
     @Override

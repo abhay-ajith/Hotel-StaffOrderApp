@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.order_app.R;
+import com.example.order_app.viewmodel.BeveragecatData;
 import com.example.order_app.viewmodel.SnackData;
 
 public class SnackAdapter extends RecyclerView.Adapter<SnackAdapter.ViewHolder> {
@@ -46,8 +47,10 @@ public class SnackAdapter extends RecyclerView.Adapter<SnackAdapter.ViewHolder> 
         holder.imageButtonPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int quantity = Integer.parseInt(snackDataList.getQuantity());
                 quantity++;
-                displayQuantity(holder.quantityTxt);
+                snackDataList.setQuantity(String.valueOf(quantity));
+                holder.quantityTxt.setText(String.valueOf(quantity));
             }
         });
 
@@ -58,8 +61,10 @@ public class SnackAdapter extends RecyclerView.Adapter<SnackAdapter.ViewHolder> 
                     Toast.makeText(v.getContext(), "Cant Reduce the Amount",Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    int quantity = Integer.parseInt(snackDataList.getQuantity());
                     quantity--;
-                    displayQuantity(holder.quantityTxt);
+                    snackDataList.setQuantity(String.valueOf(quantity));
+                    holder.quantityTxt.setText(String.valueOf(quantity));
                 }
             }
         });
@@ -68,6 +73,10 @@ public class SnackAdapter extends RecyclerView.Adapter<SnackAdapter.ViewHolder> 
 
     private void displayQuantity(TextView quantityTxt) {
         quantityTxt.setText(String.valueOf(quantity));
+    }
+
+    public SnackData getItem(int position) {
+        return snackData[position];
     }
 
     @Override
