@@ -27,6 +27,8 @@ import com.example.order_app.Adapters.BeverageAdapter;
 import com.example.order_app.R;
 import com.example.order_app.Database.OrderProvider;
 import com.example.order_app.viewmodel.BeveragecatData;
+import com.example.order_app.viewmodel.SnackData;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -101,11 +103,13 @@ public class BeverageFragment extends Fragment {
         Cursor cursor = getActivity().getContentResolver().query(OrderProvider.CONTENT_URI, null, null, null, null);
         if(cursor != null){
             try{
+                StringBuilder tableData = new StringBuilder();
                 while (cursor.moveToNext()){
                     String item_Name=cursor.getString(cursor.getColumnIndex(OrderProvider.itemName));
                     int quant=Integer.parseInt(cursor.getString(cursor.getColumnIndex(OrderProvider.quantity)));
-                    Log.d("Abhay",item_Name + " " + quant);
-                    Toast.makeText(getContext(),item_Name + " " + quant,Toast.LENGTH_SHORT).show();
+                    tableData.append(item_Name).append(" ").append(quant).append("\n");
+                    Log.d("Abhay",tableData.toString());
+                    Toast.makeText(getContext(),tableData.toString(),Toast.LENGTH_SHORT).show();
                 }
             }finally {
                 cursor.close();

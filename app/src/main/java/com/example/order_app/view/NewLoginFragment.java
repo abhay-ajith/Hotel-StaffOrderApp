@@ -81,6 +81,7 @@ public class NewLoginFragment extends Fragment {
         getActivity().getContentResolver().insert(OrderProvider.CONTENT_URI_USER, values);
 
         Log.d("abhay", "Added Successfully New User ");
+        Toast.makeText(getContext(),"Added Successfully New User",Toast.LENGTH_SHORT).show();
     }
 
     private void goToMain() {
