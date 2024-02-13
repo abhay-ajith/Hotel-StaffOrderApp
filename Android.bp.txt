@@ -1,0 +1,9 @@
+android_app_import {
+        name:"Order_App",
+        apk: "orderapp-debug.apk",
+        presigned: true,
+        owner: "Abhay",
+        dex_preopt: {
+                enabled:false,
+        },
+}
